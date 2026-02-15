@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+@theme{
+    --text-shadow-md: 8px 2px 4px rgba(0, 0, 0, 0.3);
+    --animate-slideFromLeft:slideFromLeft 0.2s ease-in-out;
+    @keyframes slideFromLeft{
+        from{
+            transform:translateX(100%);
+            opacity:0;
+        }to{
+            tranform:translatex(0%);
+            opacity:1;
+        }
+    }
+
+    --animate-slideFromBottom:slideFromBottom 0.2s ease-in-out;
+    @keyframes slideFromBottom{
+        from{
+            transform:translateY(100%);
+            opacity:0;
+        }to{
+            transform:translateY(0%);
+            opacity:1;
+        }
+    }
+
+    --animate-glowBorder:glowBorder 0.5s linear infinite;
+    @keyframes glowBorder {
+  0% {
+    border-top-color: blue;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  25% {
+    border-top-color: transparent;
+    border-right-color: blue;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  50% {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: blue;
+    border-left-color: transparent;
+  }
+  75% {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: blue;
+  }
+  100% {
+    border-top-color: blue;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+}
+}
+.background-hero{
+  background-image:url('/static/background-colors.jpg');
+  background-size:cover;
+  background-repeat:no-repeat;
+    background-position: center;    
+  
+}
