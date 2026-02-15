@@ -33,8 +33,11 @@ const CommentsSection = ({id}) => {
         e.preventDefault()
         try {
             if(!token){
-                toast.error("you need to login to use this feature....")
-                navigate('/loginpage')
+                toast.error("you need to login to use this feature....redirecting you to login page...")
+                setTimeout(()=>{
+                 navigate('/loginpage')
+                },3000)
+               
                 throw new Error("failed authentication")
             }
             const res=await api.post('/auth/comments',{comment,id})
@@ -61,7 +64,7 @@ const CommentsSection = ({id}) => {
     <div className='flex flex-col gap-2'>
         <form className='bg-white p-2 rounded-lg mt-2 flex flex-col gap-2' onSubmit={handlesubmit}>
             <label htmlFor="comment">Comment</label>
-           <input type="text" name='comment' id='comment' value={comment} onChange={(e)=>setcomment(e.target.value)} className='bg-white p-1 outline'/>
+           <input type="text" name='comment' id='comment' value={comment} onChange={(e)=>setcomment(e.target.value)} className='bg-white p-1 outline' />
            <input type="submit" value={"submit"} className='bg-cyan-700 hover:opacity-80 p-2'/>
         </form>
         <h2 className='text-2xl font-bold'>Comments</h2>
