@@ -3,12 +3,16 @@ import CommentCard from './CommentCard'
 import api from '../utils/axiossetup'
 import { FaSpinner } from 'react-icons/fa'
 import { toast } from 'react-toastify'
+import { useAuthContext } from '../contexts/AuthProvider'
+import { useNavigate } from 'react-router-dom'
 
 const CommentsSection = ({id}) => {
+    const {token}=useAuthContext()
     const [data,setdata]=useState([])
     const [loading,setLoading]=useState(false)
     const [comment,setcomment]=useState('')
     const [refresh,setRefresh]=useState(false)
+    const navigate=useNavigate()
     useEffect(()=>{
         const fetchData=async()=>{
             try {
@@ -28,6 +32,11 @@ const CommentsSection = ({id}) => {
     const handlesubmit=async(e)=>{
         e.preventDefault()
         try {
+            if(!token){
+                toast.error("you need to login to use this feature....")
+                navigate('/loginpage')
+                throw new Error("failed authentication")
+            }
             const res=await api.post('/auth/comments',{comment,id})
             toast.success(res.data.message)
             setRefresh(prev=>!prev)

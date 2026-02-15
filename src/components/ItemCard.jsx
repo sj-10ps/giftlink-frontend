@@ -1,22 +1,16 @@
 import React from 'react'
-import { useAuthContext } from '../contexts/AuthProvider'
-import { toast } from 'react-toastify'
+
 import { useNavigate } from 'react-router-dom'
 
 const ItemCard = ({item}) => {
-  const {token}=useAuthContext()
+ 
   const navigate=useNavigate()
     const getProperDate=()=>{
         const date=new Date(1693267200)
         return date.toDateString()
     }
     const handlenav=()=>{
-      if(!token){
-        toast.error("you need to login to use this feature redirecting...")
-        setTimeout(()=>{
-          navigate('/loginpage')
-        },2000)
-      }
+     
       navigate(`/detailspage/${item._id}`)
     }
   return (

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Userlayout from '../layouts/Userlayout'
 import {  useNavigate, useParams } from 'react-router-dom'
-import api from '../utils/axiossetup'
+
 import DetailedCard from '../components/DetailedCard'
 import { FaBaby, FaSpinner } from 'react-icons/fa'
 import CommentsSection from '../components/CommentsSection'
+import axios from 'axios'
+import IP from '../utils/IP'
 
 const Detailspage = () => {
   const {id}=useParams()
+  console.log(id)
   const [data,setData]=useState({})
   const [loading,setLoading]=useState(false)
   const navigate=useNavigate()
@@ -15,8 +18,9 @@ const Detailspage = () => {
      const fetchData=async()=>{
       try {
         setLoading(true)
-        const res=await api.get(`/auth/giftdetails/${id}`)
+        const res=await axios.get(`${IP}/gift/${id}`)
         setData(res.data)
+        console.log(res.data)
       } catch (error) {
         console.log(error)
       }finally{

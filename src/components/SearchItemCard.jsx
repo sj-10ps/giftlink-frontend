@@ -1,20 +1,12 @@
 import React from "react";
-import { useAuthContext } from "../contexts/AuthProvider";
-import { toast } from "react-toastify";
+
 import { useNavigate } from "react-router-dom";
 
 const SearchItemCard = ({ item }) => {
-  const { token } = useAuthContext();
+
   const navigate = useNavigate();
   const handlenav = () => {
-    if (!token) {
-      toast.error(
-        "You need to login to use this feature..redirecting in 2 seconds..."
-      );
-      setTimeout(() => {
-        navigate("/loginpage");
-      }, 2000);
-    }
+ 
     navigate(`/detailspage/${item._id}`)
   };
   return (
