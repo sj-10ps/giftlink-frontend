@@ -34,6 +34,9 @@ const CommentsSection = ({id}) => {
             
         } catch (error) {
              console.log(error)
+             if(error.response?.status===429){
+                toast.error(error.response.data.message)
+             }
         }finally{
             setcomment('')
         }
