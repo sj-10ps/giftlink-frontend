@@ -1,4 +1,4 @@
-  import React, { useEffect, useState } from 'react'
+  import React, {  useState } from 'react'
   import Userlayout from '../layouts/Userlayout'
   import FilterSection from '../components/FilterSection'
   import IP from '../utils/IP'
@@ -18,20 +18,7 @@ import PaginationButton from '../components/PaginationButton'
           year:0,
       })
 
-      useEffect(()=>{
-        const fetchData=async()=>{
-          try {
-            setLoading(true)
-            const res=await axios.get(`${IP}/gift`)
-            setData(res.data.data)
-          } catch (error) {
-            console.log(error.message)
-          }finally{
-            setLoading(false)
-          }
-        }
-        fetchData()
-      },[])
+ 
   
     const handlechange=(e)=>{
       const {name,value}=e.target
